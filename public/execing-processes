@@ -5,17 +5,19 @@
     <title>Go by Example: Exec'ing Processes</title>
     <link rel=stylesheet href="site.css">
   </head>
-  <script type="text/javascript">
-    if (window.location.host == "gobyexample.com") {
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-34996217-1']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    }
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'spawning-processes';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'signals';
+          }
+          
+      }
   </script>
   <body>
     <div class="example" id="execing-processes">
@@ -37,8 +39,8 @@ function.</p>
 
           </td>
           <td class="code empty leading">
-	        
             
+          
           </td>
         </tr>
         
@@ -47,8 +49,8 @@ function.</p>
             
           </td>
           <td class="code leading">
-	        <a href="http://play.golang.org/p/neqdJ51KLN"><img title="Run code" src="play.png" class="run" /></a>
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <a href="http://play.golang.org/p/ahZjpJaZz44"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+          <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
 </pre></div>
 
           </td>
@@ -59,10 +61,12 @@ function.</p>
             
           </td>
           <td class="code leading">
-	        
-            <div class="highlight"><pre><span class="kn">import</span> <span class="s">&quot;syscall&quot;</span>
-<span class="kn">import</span> <span class="s">&quot;os&quot;</span>
-<span class="kn">import</span> <span class="s">&quot;os/exec&quot;</span>
+            
+          <div class="highlight"><pre><span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;os&quot;</span>
+    <span class="s">&quot;os/exec&quot;</span>
+    <span class="s">&quot;syscall&quot;</span>
+<span class="p">)</span>
 </pre></div>
 
           </td>
@@ -73,8 +77,8 @@ function.</p>
             
           </td>
           <td class="code leading">
-	        
-            <div class="highlight"><pre><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+            
+          <div class="highlight"><pre><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
 </pre></div>
 
           </td>
@@ -89,8 +93,8 @@ we&rsquo;ll use <code>exec.LookPath</code> to find it (probably
 
           </td>
           <td class="code leading">
-	        
-            <div class="highlight"><pre>    <span class="nx">binary</span><span class="p">,</span> <span class="nx">lookErr</span> <span class="o">:=</span> <span class="nx">exec</span><span class="p">.</span><span class="nx">LookPath</span><span class="p">(</span><span class="s">&quot;ls&quot;</span><span class="p">)</span>
+            
+          <div class="highlight"><pre>    <span class="nx">binary</span><span class="p">,</span> <span class="nx">lookErr</span> <span class="o">:=</span> <span class="nx">exec</span><span class="p">.</span><span class="nx">LookPath</span><span class="p">(</span><span class="s">&quot;ls&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="nx">lookErr</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
         <span class="nb">panic</span><span class="p">(</span><span class="nx">lookErr</span><span class="p">)</span>
     <span class="p">}</span>
@@ -108,8 +112,8 @@ be the program name.</p>
 
           </td>
           <td class="code leading">
-	        
-            <div class="highlight"><pre>    <span class="nx">args</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;ls&quot;</span><span class="p">,</span> <span class="s">&quot;-a&quot;</span><span class="p">,</span> <span class="s">&quot;-l&quot;</span><span class="p">,</span> <span class="s">&quot;-h&quot;</span><span class="p">}</span>
+            
+          <div class="highlight"><pre>    <span class="nx">args</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;ls&quot;</span><span class="p">,</span> <span class="s">&quot;-a&quot;</span><span class="p">,</span> <span class="s">&quot;-l&quot;</span><span class="p">,</span> <span class="s">&quot;-h&quot;</span><span class="p">}</span>
 </pre></div>
 
           </td>
@@ -123,8 +127,8 @@ environment.</p>
 
           </td>
           <td class="code leading">
-	        
-            <div class="highlight"><pre>    <span class="nx">env</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Environ</span><span class="p">()</span>
+            
+          <div class="highlight"><pre>    <span class="nx">env</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Environ</span><span class="p">()</span>
 </pre></div>
 
           </td>
@@ -140,8 +144,8 @@ value.</p>
 
           </td>
           <td class="code">
-	        
-            <div class="highlight"><pre>    <span class="nx">execErr</span> <span class="o">:=</span> <span class="nx">syscall</span><span class="p">.</span><span class="nx">Exec</span><span class="p">(</span><span class="nx">binary</span><span class="p">,</span> <span class="nx">args</span><span class="p">,</span> <span class="nx">env</span><span class="p">)</span>
+            
+          <div class="highlight"><pre>    <span class="nx">execErr</span> <span class="o">:=</span> <span class="nx">syscall</span><span class="p">.</span><span class="nx">Exec</span><span class="p">(</span><span class="nx">binary</span><span class="p">,</span> <span class="nx">args</span><span class="p">,</span> <span class="nx">env</span><span class="p">)</span>
     <span class="k">if</span> <span class="nx">execErr</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
         <span class="nb">panic</span><span class="p">(</span><span class="nx">execErr</span><span class="p">)</span>
     <span class="p">}</span>
@@ -161,8 +165,8 @@ value.</p>
 
           </td>
           <td class="code leading">
-	        
-            <div class="highlight"><pre><span class="gp">$</span> go run execing-processes.go
+            
+          <div class="highlight"><pre><span class="gp">$</span> go run execing-processes.go
 <span class="go">total 16</span>
 <span class="go">drwxr-xr-x  4 mark 136B Oct 3 16:29 .</span>
 <span class="go">drwxr-xr-x 91 mark 3.0K Oct 3 12:50 ..</span>
@@ -181,8 +185,8 @@ processes covers most use cases for <code>fork</code>.</p>
 
           </td>
           <td class="code empty">
-	        
             
+          
           </td>
         </tr>
         
@@ -194,8 +198,13 @@ processes covers most use cases for <code>fork</code>.</p>
       </p>
       
       <p class="footer">
-        by <a href="https://twitter.com/mmcgrana">@mmcgrana</a> | <a href="mailto:mmcgrana@gmail.com">feedback</a> | <a href="https://github.com/mmcgrana/gobyexample/blob/master/examples/execing-processes">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+        by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> | <a href="https://github.com/mmcgrana/gobyexample/blob/master/examples/execing-processes">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
       </p>
     </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"os\"\u000A    \"os/exec\"\u000A    \"syscall\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    binary, lookErr := exec.LookPath(\"ls\")\u000A    if lookErr != nil {\u000A        panic(lookErr)\u000A    }\u000A');codeLines.push('    args := []string{\"ls\", \"-a\", \"-l\", \"-h\"}\u000A');codeLines.push('    env := os.Environ()\u000A');codeLines.push('    execErr := syscall.Exec(binary, args, env)\u000A    if execErr != nil {\u000A        panic(execErr)\u000A    }\u000A}\u000A');codeLines.push('');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
   </body>
 </html>
